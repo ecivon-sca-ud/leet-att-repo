@@ -1,0 +1,42 @@
+ class Solution {
+    //Attempt 1: Brute Force Method.
+    //Below is the instinctive solution,
+    // which,while correct, is much slower than other methods that
+     //will be shown.
+    public int[] twoSum(int[] nums,int target) {
+        for(int i=0 ; i< nums.length ; i++) {
+            for(int j=(i+1) ; j< nums.length ;j++) {
+                if(nums[i]+nums[j] ==target) {
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return nums;
+    }
+    /*
+    {2,4,5}
+    target= 6
+     */
+}
+
+//Attempt 2: Cleaner method.
+import java.util.HashMap;
+import java.util.Map;
+class Solution {
+    /*
+    Attempt 2: HashMap Edition
+    {2,4,5}
+    target= 6
+     */
+    public int[] twoSum(int[] nums,int target) {
+        Map<Integer,Integer> targetMap= new HashMap<>();
+        for(int i=0 ; i< nums.length ; i++) {
+            Integer complementIndex= targetMap.get(nums[i]);
+            if(complementIndex != null) {
+                return new int[]{i,complementIndex};
+            }
+            targetMap.put( (target-nums[i])  , i);
+        }
+        return nums;
+    }
+}
